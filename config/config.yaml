@@ -1,0 +1,43 @@
+app:
+  name: search-engine
+  env: development
+
+server:
+  port: "8080"
+
+database:
+  host: localhost
+  port: "5432"
+  user: postgres
+  password: postgres
+  name: search_engine
+  sslmode: disable
+
+redis:
+  host: localhost
+  port: "6379"
+  password: ""
+  db: 0
+
+provider:
+  timeout: 5s
+  circuit_breaker_threshold: 5
+  circuit_breaker_timeout: 30s
+  rate_limit_max: 100
+  rate_limit_window: 60s
+  default_page_size: 40
+  max_page_size: 100
+
+search:
+  cache_ttl: 5m
+  prefer_database: false
+
+providers:
+  - name: provider1
+    url: https://raw.githubusercontent.com/WEG-Technology/mock/refs/heads/main/v2/provider1
+    format: json
+    rate_limit: 100
+  - name: provider2
+    url: https://raw.githubusercontent.com/WEG-Technology/mock/refs/heads/main/v2/provider2
+    format: xml
+    rate_limit: 100
